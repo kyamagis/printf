@@ -6,7 +6,7 @@
 /*   By: kyamagis <kyamagis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:01:46 by kyamagis          #+#    #+#             */
-/*   Updated: 2022/05/09 20:27:21 by kyamagis         ###   ########.fr       */
+/*   Updated: 2022/05/10 12:47:52 by kyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,35 +18,28 @@
 // }
 
  
+int ft_printf(const char *format, ...)
+{
+    valist  arg1;
+    valist  arg2;
+    size_t  done;
+
+    done = ft_printlen(format, arg1)
+    if (done >= INT_MAX)
+    {
+        va_end(arg1);
+        va_end(arg2);
+        return (-1);
+    }
+    ft_vprint(format, arg2);
+    va_end(arg1);
+    va_end(arg2);
+    return (done);
+}
+
 int main(void)
 {
-	printf("1 + 2 + 3 = %d\n", vlaadd(3, 1, 2, 4));
-	printf("1 + 2 + 3 + 4 = %d\n", vlaadd(4, 1, 2, 3, 4));
-	printf("1 + 2 + 3 + 4 + 5 = %d\n", vlaadd(5, 1, 2, 3, 4, 5));
-	printf("1 + 2 + 3 + 4 + 5 + 6 = %d\n", vlaadd(6, 1, 2, 3, 4, 5, 6));
-	printf("1 + 2 + 3 + 4q + 5 + 6 + 7 = %d\n", vlaadd(7, 1, 2, 3, 4, 5, 6, 7));
-	//printf("");
-	printf("d,%d\n", +INT_MAX);
-	printf("d,%d\n", -9);
-	printf("i,%i\n", +INT_MAX);
-	printf("i,%i\n", -9);
-	printf("u,%u\n", -9);
-	printf("x,%x\n", INT_MIN);
-	printf("x,%x\n", INT_MIN + 10);
-	printf("x,%x\n", -1);
-	printf("x,%x\n", -2147483647);
-	printf("X,%X\n", INT_MAX);
-	printf("\n\n");
-	int i=100;
-	printf("%d\n",i);
-	int *pointer = &i;
-	printf("%p\n",i);
-	printf("%p",pointer);
-
-	printf("ft_printf(return): %d\n", ft_printf("ft_printf(output): hello, %c, %s, %p, %d, %i, %u, %x, %X, %%%%\n", 'a', s, a, -2147483647, 2147483647, 2147483647, 2147483647, 2147483647));
-	printf("printf(return)   : %d\n", printf("printf(output)   : hello, %c, %s, %p, %d, %i, %u, %x, %X, %%%%\n", 'a', s, a, -2147483647, 2147483647, 2147483647, 2147483647, 2147483647));
-	return 0;
-}
+    
 
 int vlaadd(int num, ...)
 {
@@ -77,7 +70,6 @@ size_t	writestr(const char *str, va_list pmts)
 	size_t	strlen;
 
 	strlen = 0;
-	va_start(pmts, str);
 	i = 0;
 	while (str[i] != '\0')
 	{
@@ -94,7 +86,6 @@ size_t	writestr(const char *str, va_list pmts)
 		strlen++;
 		i++;
 	}
-	va_end (pmts);
 	return (strlen);
 }
 
@@ -116,4 +107,35 @@ size_t	ft_write_condition(int c, va_list pmts)
 		return (ft_put_base(va_arg(pmts, int), 'X'));
 }
 
+int main(void)
+{
+	printf("1 + 2 + 3 = %d\n", vlaadd(3, 1, 2, 4));
+	printf("1 + 2 + 3 + 4 = %d\n", vlaadd(4, 1, 2, 3, 4));
+	printf("1 + 2 + 3 + 4 + 5 = %d\n", vlaadd(5, 1, 2, 3, 4, 5));
+	printf("1 + 2 + 3 + 4 + 5 + 6 = %d\n", vlaadd(6, 1, 2, 3, 4, 5, 6));
+	printf("1 + 2 + 3 + 4q + 5 + 6 + 7 = %d\n", vlaadd(7, 1, 2, 3, 4, 5, 6, 7));
+	//printf("");
+	printf("d,%d\n", +INT_MAX);
+	printf("d,%d\n", -9);
+	printf("i,%i\n", +INT_MAX);
+	printf("i,%i\n", -9);
+	printf("u,%u\n", -9);
+	printf("x,%x\n", INT_MIN);
+	printf("x,%x\n", INT_MIN + 10);
+	printf("x,%x\n", -1);
+	printf("x,%x\n", -2147483647);
+	printf("X,%X\n", INT_MAX);
+	printf("\n\n");
+	int i=100;
+	printf("%d\n",i);
+	int *pointer = &i;
+	printf("%p\n",i);
+	printf("%p",pointer);
 
+	printf("ft_printf(return): %d\n", ft_printf("ft_printf(output): hello, %c, %s, %p, %d, %i, %u, %x, %X, %%%%\n", 'a', s, a, -2147483647, 2147483647, 2147483647, 2147483647, 2147483647));
+	printf("printf(return)   : %d\n", printf("printf(output)   : hello, %c, %s, %p, %d, %i, %u, %x, %X, %%%%\n", 'a', s, a, -2147483647, 2147483647, 2147483647, 2147483647, 2147483647));
+	
+	char *s;
+	s = (char *)malloc(sizeof(char) * (INT_MAX + 1));
+	ft_printf("\nretu"), printf("%s",memset(s, '1',INT_MAX));
+}
