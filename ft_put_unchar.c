@@ -1,21 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_put_unchar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyamagis <kyamagis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 19:49:49 by kyamagis          #+#    #+#             */
-/*   Updated: 2022/05/09 20:08:14 by kyamagis         ###   ########.fr       */
+/*   Updated: 2022/05/11 21:08:18 by kyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-
-void	ft_putchar_fd(char c, int fd)
-{
-	write (fd, &c, 1);
-}
+#include "ft_printf.h"
 
 int	ft_put_unchar(int c)
 {
