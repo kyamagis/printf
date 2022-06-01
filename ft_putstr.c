@@ -6,13 +6,13 @@
 /*   By: kyamagis <kyamagis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 19:58:44 by kyamagis          #+#    #+#             */
-/*   Updated: 2022/05/12 10:43:04 by kyamagis         ###   ########.fr       */
+/*   Updated: 2022/06/01 17:40:50 by kyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-long long	ft_putstr(char *s, long long size)
+ssize_t	ft_putstr(char *s, ssize_t size)
 {
 	size_t	len;
 

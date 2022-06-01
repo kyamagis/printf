@@ -6,13 +6,13 @@
 /*   By: kyamagis <kyamagis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 12:49:15 by kyamagis          #+#    #+#             */
-/*   Updated: 2022/05/24 19:15:17 by kyamagis         ###   ########.fr       */
+/*   Updated: 2022/06/01 18:47:25 by kyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_put_ten(int n, char *base, int digcount)
+int	ft_put_ten(int n, ssize_t digcount)
 {
 	int		minus;
 
@@ -23,15 +23,15 @@ int	ft_put_ten(int n, char *base, int digcount)
 		minus = 1;
 	}
 	if (n <= -10 || 10 <= n)
-		digcount += ft_put_ten(n / 10, base, digcount);
+		digcount += ft_put_ten(n / 10, digcount);
 	n = n % 10;
 	if (n < 0)
 		n *= -1;
-	write(1, &base[n], 1);
+	write(1, &TEN_BASE_STR[n], 1);
 	return (digcount + minus);
 }
 
-int	ft_put_hexa(unsigned int n, char *base, int digcount)
+int	ft_put_hexa(unsigned int n, char *base, ssize_t digcount)
 {
 	size_t	num;
 
@@ -45,7 +45,7 @@ int	ft_put_hexa(unsigned int n, char *base, int digcount)
 	return (digcount);
 }
 
-int	ft_put_pointer(void *n, char *base, int digcount)
+int	ft_put_pointer(void *n, ssize_t digcount)
 {
 	int			flag;
 	uintptr_t	num;
@@ -62,19 +62,19 @@ int	ft_put_pointer(void *n, char *base, int digcount)
 	if (16 <= num)
 	{
 		digcount += 1;
-		digcount = ft_put_pointer((void *)(num / 16), base, digcount);
+		digcount = ft_put_pointer((void *)(num / 16), digcount);
 	}
 	num = num % 16;
-	write(1, &base[num], 1);
+	write(1, &S_HEX_BASE_STR[num], 1);
 	return (digcount + flag);
 }
 
-int	ft_put_uint(unsigned int n, char *base, int	digcount)
+int	ft_put_uint(unsigned int n, ssize_t	digcount)
 {
 	if (10 <= n)
-		digcount += ft_put_uint(n / 10, base, digcount);
+		digcount += ft_put_uint(n / 10, digcount);
 	n = n % 10;
-	write(1, &base[n], 1);
+	write(1, &TEN_BASE_STR[n], 1);
 	return (digcount);
 }
 
