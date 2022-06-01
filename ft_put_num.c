@@ -6,7 +6,7 @@
 /*   By: kyamagis <kyamagis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 12:49:15 by kyamagis          #+#    #+#             */
-/*   Updated: 2022/05/12 10:58:46 by kyamagis         ###   ########.fr       */
+/*   Updated: 2022/05/24 19:15:17 by kyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_put_ten(int n, char *base, int digcount)
 	return (digcount + minus);
 }
 
-int	ft_put_hexa(int n, char *base, int digcount)
+int	ft_put_hexa(unsigned int n, char *base, int digcount)
 {
 	size_t	num;
 

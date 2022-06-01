@@ -6,7 +6,7 @@
 /*   By: kyamagis <kyamagis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 12:27:55 by kyamagis          #+#    #+#             */
-/*   Updated: 2022/05/12 11:27:51 by kyamagis         ###   ########.fr       */
+/*   Updated: 2022/05/24 19:15:32 by kyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 int			ft_printf(const char *format, ...);
 int			ft_put_ten(int n, char *base, int digcount);
-int			ft_put_hexa(int n, char *base, int digcount);
+int			ft_put_hexa(unsigned int n, char *base, int digcount);
 int			ft_put_pointer(void *n, char *base, int digcount);
 int			ft_put_uint(unsigned int n, char *base, int	digcount);
 int			ft_put_unchar(int c);
