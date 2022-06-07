@@ -6,11 +6,31 @@
 /*   By: kyamagis <kyamagis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:01:46 by kyamagis          #+#    #+#             */
-/*   Updated: 2022/06/01 18:44:55 by kyamagis         ###   ########.fr       */
+/*   Updated: 2022/06/07 18:45:19 by kyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static int	ft_put_unchar(int c)
+{
+	unsigned char	unc;
+
+	unc = (unsigned char)c;
+	return (write (1, &c, 1));
+}
+
+static ssize_t	ft_putstr(char *s, ssize_t size)
+{
+	size_t	len;
+
+	if (s == NULL)
+		s = "(null)";
+	len = ft_strlen(s);
+	if (INT_MAX <= len + size)
+		return (-1);
+	return (write(1, s, len));
+}
 
 static int	ft_write_condition(char c, va_list pmts, ssize_t	len)
 {
@@ -24,19 +44,16 @@ static int	ft_write_condition(char c, va_list pmts, ssize_t	len)
 	if (c == 'p')
 		size = ft_put_pointer(va_arg(pmts, void *), 1);
 	if (c == 'd' || c == 'i')
-		size = ft_put_ten(va_arg(pmts, int), 1);
+		size = ft_put_ten(va_arg(pmts, int));
 	if (c == 'u')
-		size = ft_put_uint(va_arg(pmts, unsigned int), 1);
+		size = ft_put_uint(va_arg(pmts, unsigned int));
 	if (c == 'x')
-		size = ft_put_hexa(va_arg(pmts, unsigned int), S_HEX_BASE_STR, 1);
+		size = ft_put_hexa(va_arg(pmts, unsigned int), S_HEX_BASE_STR);
 	if (c == 'X')
-		size = ft_put_hexa(va_arg(pmts, unsigned int), L_HEX_BASE_STR, 1);
+		size = ft_put_hexa(va_arg(pmts, unsigned int), L_HEX_BASE_STR);
 	if (c == '%')
-	{
-		write(1, "%", 1);
-		size = 1;
-	}
-	if (INT_MAX <= len + size || size == -1)
+		size = write(1, "%", 1);
+	if (size == -1 || INT_MAX <= len + size)
 		return (-1);
 	return (len + size);
 }

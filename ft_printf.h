@@ -6,7 +6,7 @@
 /*   By: kyamagis <kyamagis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 12:27:55 by kyamagis          #+#    #+#             */
-/*   Updated: 2022/06/01 18:51:14 by kyamagis         ###   ########.fr       */
+/*   Updated: 2022/06/07 18:42:01 by kyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,10 @@
 # include <string.h>
 # include <stdlib.h>
 
-int			ft_printf(const char *format, ...);
-int			ft_put_ten(int n, ssize_t digcount);
-int			ft_put_hexa(unsigned int n, char *base, ssize_t digcount);
-int			ft_put_pointer(void *n, ssize_t digcount);
-int			ft_put_uint(unsigned int n, ssize_t	digcount);
-int			ft_put_unchar(int c);
-ssize_t		ft_putstr(char *s, ssize_t size);
-size_t		ft_strlen(const char *s);
+int		ft_printf(const char *format, ...);
+int		ft_put_ten(int n);
+int		ft_put_hexa(unsigned int n, char *base);
+int		ft_put_pointer(void *n, ssize_t digcount);
+int		ft_put_uint(unsigned int n);
+size_t	ft_strlen(const char *s);
 #endif

@@ -2,9 +2,6 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 MANDATORY = ft_printf.c\
 			ft_put_num.c\
-			ft_put_unchar.c\
-			ft_putstr.c\
-			ft_strlen.c\
 
 MAN_OBJS = $(MANDATORY:.c=.o)
 BON_OBJS = $(BONUS:.c=.o)

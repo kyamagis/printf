@@ -6,57 +6,51 @@
 /*   By: kyamagis <kyamagis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 12:49:15 by kyamagis          #+#    #+#             */
-/*   Updated: 2022/06/01 18:47:25 by kyamagis         ###   ########.fr       */
+/*   Updated: 2022/06/07 18:42:40 by kyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_put_ten(int n, ssize_t digcount)
+int	ft_put_ten(int n)
 {
-	int		minus;
+	ssize_t	digcount;
 
-	minus = 0;
+	digcount = 0;
 	if (-10 < n && n < 0)
-	{
-		write(1, "-", 1);
-		minus = 1;
-	}
+		digcount += write(1, "-", 1);
 	if (n <= -10 || 10 <= n)
-		digcount += ft_put_ten(n / 10, digcount);
+		digcount += ft_put_ten(n / 10);
 	n = n % 10;
 	if (n < 0)
 		n *= -1;
-	write(1, &TEN_BASE_STR[n], 1);
-	return (digcount + minus);
+	digcount += write(1, &TEN_BASE_STR[n], 1);
+	return (digcount);
 }
 
-int	ft_put_hexa(unsigned int n, char *base, ssize_t digcount)
+int	ft_put_hexa(unsigned int n, char *base)
 {
 	size_t	num;
+	ssize_t	digcount;
 
+	digcount = 0;
 	num = n;
 	if (n < 0)
 		num = UINT_MAX + 1 + n;
 	if (16 <= num)
-		digcount += ft_put_hexa(num / 16, base, digcount);
+		digcount += ft_put_hexa(num / 16, base);
 	num = num % 16;
-	write(1, &base[num], 1);
+	digcount += write(1, &base[num], 1);
 	return (digcount);
 }
 
 int	ft_put_pointer(void *n, ssize_t digcount)
 {
-	int			flag;
 	uintptr_t	num;
 
 	num = (uintptr_t)n;
-	flag = 0;
 	if (digcount == 1)
-	{
-		write (1, "0x", 2);
-		flag = 2;
-	}
+		digcount += write (1, "0x", 2);
 	if (n < 0)
 		num = UINT_MAX + 1 + (uintptr_t)n;
 	if (16 <= num)
@@ -66,16 +60,29 @@ int	ft_put_pointer(void *n, ssize_t digcount)
 	}
 	num = num % 16;
 	write(1, &S_HEX_BASE_STR[num], 1);
-	return (digcount + flag);
+	return (digcount);
 }
 
-int	ft_put_uint(unsigned int n, ssize_t	digcount)
+int	ft_put_uint(unsigned int n)
 {
+	ssize_t	digcount;
+
+	digcount = 0;
 	if (10 <= n)
-		digcount += ft_put_uint(n / 10, digcount);
+		digcount += ft_put_uint(n / 10);
 	n = n % 10;
-	write(1, &TEN_BASE_STR[n], 1);
+	digcount += write(1, &TEN_BASE_STR[n], 1);
 	return (digcount);
+}
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
 
 /*int	main (void)
